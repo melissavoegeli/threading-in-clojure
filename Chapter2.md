@@ -12,7 +12,12 @@ Bank accounts have a running balance that (ideally) should never drop below $0. 
 
 The first way we're going to use concurrency is with futures.
 
-  *Futures* allow you to shove off work into another thread. This takes the form of: (future ((withdraw account 1))
+  *Futures* allow you to shove off work into another thread.
+
+    To use a future, pass function to it.
+
+    (future (println "Running...")
+            :done!))
 
     1 (defprotocol IAccount
     2   (balance [this])
@@ -27,7 +32,7 @@ The first way we're going to use concurrency is with futures.
     11  (deposit [this val] (set! checking (+ checking val))))
     12 (def melissa (Account. 5))
 
-    > git checkout chapter2
+    > git checkout getting-started
     > lein repl; (load-file "/path/to/account.clj")
 
 Above we have created an account data type that keeps track of our checking account balance.

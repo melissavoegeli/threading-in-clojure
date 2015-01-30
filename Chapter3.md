@@ -2,13 +2,7 @@
 
 ### Futures
 
-We just ran something similar to:
-
-    (doseq [i (range 10)]
-      (future ((withdraw melissas-account 1))))
-    (balance melissas-account)
-
-   _TIP: skip ahead to this step with `git checkout futures`_
+   _TIP: skip ahead to an implementation of this answer with `git checkout futures`_
 
 When thread 1 is checking if the value to be withdrawn is still less than the current balance in the checking account on line 8, it proceeds to line 9 to deduct the amount. However, in the time it takes for thread 1 to get from line 8 to line 9, thread 2 could have successfully withdrawn the last dollar!
 
@@ -18,20 +12,26 @@ In most other languages the way to fix this issue is to lock down our checking a
 
    *Blocking* Waiting for an operation to finish before continuing with your work.
 
-Which brings us to rule #4.
+You can lock shared data by `(locking shared-data (some-work))`. Which brings us to rule #4.
 
-    (doseq [i (range 10)]
-      (future (locking melissas-account ((withdraw melissas-account 1)))))
-    (balance melissas-account)
+   _TIP: skip ahead to an implementation of locking data with `git checkout futures-locking`_
 
 ### Delays
 
    *Delay* A construct that suspends some body of code, evaluating it in another thread only upon demand.
 
-What happens when we replace future with delay?
+An example of a delay is:
 
-(Add example of adding delays to a list and executing them later)
+    (def d (delay (print "Wait for it...")
+                  :done))
 
+As mentioned before, that code is currently suspended (or delayed) until we want to call it. To evaluate the delay, you dereference it.
+
+    @d ; => "Wait for it...", :done
+
+What happens when we replace future with delay in or current solution? It doesn't make sense to delay withdrawing money from an account, unless we're waiting for someone to approve it. Implement a solution that creates a vector of delays and multiple threads to dereference them to approve them. What happens?
+
+_TIP: skip ahead to an implementation of using delays with `git checkout delays`_
 
 ### Differences
 
