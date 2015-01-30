@@ -1,8 +1,6 @@
 ## Writing your first threaded program
 
-### Futures and Delays
-
-#### Our Feature, the Bank Account
+### Our Feature, the Bank Account
 
 Lets walk through our list of why the community generally advises you to not to use threading as your first choice for solving a problem. In particular, lets see why you shouldn't share mutable data across threads.
 
@@ -10,11 +8,11 @@ As we alluded to before, we're going to use the example of a bank account. We'll
 
 Bank accounts have a running balance that (ideally) should never drop below $0. Normal things that you can do with a bank account are 1) check the balance at a certain point in time, 2) withdraw money from it, and 3) make deposits. These are the features we will be focussing on.
 
-#### Futures
+### Futures
 
 The first way we're going to use concurrency is with futures.
 
-  *Futures* allow you to shove off work into another thread.
+  *Futures* allow you to shove off work into another thread. This takes the form of: (future ((withdraw account 1))
 
     1 (defprotocol IAccount
     2   (balance [this])
@@ -27,9 +25,10 @@ The first way we're going to use concurrency is with futures.
     9                             (set! checking (- checking val))
     10                            (print "Insufficient funds!\n")))
     11  (deposit [this val] (set! checking (+ checking val))))
-    12 (def a (Account. 5))
+    12 (def melissa (Account. 5))
 
-    > git checkout futures
+    > git checkout chapter2
+    > lein repl; (load-file "/path/to/account.clj")
 
 Above we have created an account data type that keeps track of our checking account balance.
 You can query the balance, and make deposits and withdrawals. Keep in mind this is a very Java approach to this problem.
@@ -51,7 +50,3 @@ We get $15.
 We get $5 again.
 
 Lets create 10 different threads that all try to withdraw $1 from our account at the same time. What will happen?
-
-    (doseq [i (range 10)]
-      (future ((withdraw a 1))))
-    (balance a)
