@@ -14,7 +14,7 @@ Bank accounts have a running balance that (ideally) should never drop below $0. 
 
 The first way we're going to use concurrency is with futures.
 
-    *Futures* allow you to shove off work into another thread.
+  *Futures* allow you to shove off work into another thread.
 
     1 (defprotocol IAccount
     2   (balance [this])
@@ -46,7 +46,7 @@ We get 5, or essentially $5.
 
 We get $15.
 
-   > (withdraw 10)
+    > (withdraw 10)
 
 We get $5 again.
 
