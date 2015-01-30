@@ -4,7 +4,7 @@
 
 Learning how to write multithreaded programs is hard. In the JRuby community there are four rules you need to follow before writing them:
 
-  "In general, the safest path to concurrency in JRuby is the same as on any other platform:
+    "In general, the safest path to concurrency in JRuby is the same as on any other platform:
     1.Don't do it.
     2.If you must do it, don't share data across threads.
     3.If you must share data across threads, don't share mutable data.
