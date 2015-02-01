@@ -29,9 +29,9 @@ This workshop will get your feet wet with solving a simple concurrency problem t
 
 Multithreaded programming is a way for us to write applications with higher performance by providing simultaneous execution of programs.  Some examples include handling multiple connection requests and collecting and digesting big data. Today we will be solving the problem of simultaneous withdrawals from a checking account.
 
-Machines are very powerful, but they are not becoming a powerful as quickly as they used to. CPU clock speeds have barely increased in recent years and there are more dual core and quad core computers. This means in order to make a program near twice as fast, you have to divide up work between the two cores. Enter multithreaded programming!
+Machines are very powerful, but they are not becoming as powerful as quickly as they used to. CPU clock speeds have barely increased in recent years and there are more dual core and quad core computers. This means in order to make a program near twice as fast, you have to divide up work between the two cores. Enter multithreaded programming!
 
-   *Concurrency versus Parallelism* _Concurrency_ refers to managing more than one job at the same time. An example of this would be using one hand to juggle multiple balls. _Parallelism_ is executing two jobs at the same time. For example, instead of juggling with one hand you can use both. So now when you juggle each hand can simultaneous try to catch or throw a ball at the same time.
+   *Concurrency versus Parallelism* _Concurrency_ refers to managing more than one job at the same time. An example of concurrency would be using one hand to juggle multiple balls. _Parallelism_ is executing two jobs at the same time. For example, instead of juggling with one hand you can use both. So now when you juggle each hand can simultaneously try to catch or throw a ball at the same time.
 
 Learning how to write multithreaded programs is tricky. In the JRuby community there are four rules you need to follow before writing them:
 
@@ -41,8 +41,8 @@ Learning how to write multithreaded programs is tricky. In the JRuby community t
    3. If you must share data across threads, don't share mutable data.
    4. If you must share mutable data across threads, synchronize access to that data.
 
-3 and 4 talk about something called mutable data. Quite frankly, mutable data is just as it sounds. It's data that you can change. Mutable data is dangerous when it is used between multiple threads because if you have more than one thread reading and changing data, it can potentially put it in an inconsistent state that causes something called _RACE CONDITIONS_.
+3 and 4 talk about something called mutable data. Mutable data is data that you can mutate. Mutable data is dangerous when it is accessed by multiple threads. If you have more than one thread reading or changing data, then the data can potentially be in an inconsistent state that causes something called _RACE CONDITIONS_.
 
    *Race Condition* A race condition occurs when two or more threads can access shared data and they try to change it at the same time. Because the thread scheduling algorithm can swap between threads at any time, you don't know the order in which the threads will attempt to access the shared data.
 
-Clojure inherently allows us to protect ourselves from this right off the bat. See how easy Clojure makes this for you? Clojure loves you! We'll see more proof for this later.
+Clojure inherently allows us to protect ourselves from this right off the bat. We'll see more proof for this later.

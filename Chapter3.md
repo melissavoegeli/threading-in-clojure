@@ -2,7 +2,18 @@
 
 ### Futures
 
+The first way we're going to use concurrency is with futures.
+
+  *Futures* Allows you to create a new thread and give it some work to perform.
+
+This is an example of how to give a future some work to perform.
+
+    (future (println "Running...")
+            :done!))
+
    _TIP: skip ahead to an implementation of this answer with `git checkout futures`_
+
+Lets create 10 different threads that all try to withdraw $1 from our account at the same time. What will happen?
 
 When thread 1 is checking if the value to be withdrawn is still less than the current balance in the checking account on line 8, it proceeds to line 9 to deduct the amount. However, in the time it takes for thread 1 to get from line 8 to line 9, thread 2 could have successfully withdrawn the last dollar!
 
