@@ -25,15 +25,15 @@ This workshop will get your feet wet with solving a simple concurrency problem t
 * lein 2.5+
 * git 2.1+
 
-## Bass Tacks
+## Multithreaded Programming in Clojure
 
-Multithreaded programming is a way for us to write more preformat applications by providing simultaneous execution of programs.  Some examples include handling multiple connection requests and collecting and digesting big data. Today we will be solving the problem of simultaneous withdrawls from a checking account.
+Multithreaded programming is a way for us to write applications with higher performance by providing simultaneous execution of programs.  Some examples include handling multiple connection requests and collecting and digesting big data. Today we will be solving the problem of simultaneous withdrawals from a checking account.
 
 Machines are very powerful, but they are not becoming a powerful as quickly as they used to. CPU clock speeds have barely increased in recent years and there are more dual core and quad core computers. This means in order to make a program near twice as fast, you have to divide up work between the two cores. Enter multithreaded programming!
 
    *Concurrency versus Parallelism* _Concurrency_ refers to managing more than one job at the same time. An example of this would be using one hand to juggle multiple balls. _Parallelism_ is executing two jobs at the same time. For example, instead of juggling with one hand you can use both. So now when you juggle each hand can simultaneous try to catch or throw a ball at the same time.
 
-Learning how to write multithreaded programs is tricky. In fact, it is Run DMC Tricky. In the JRuby community there are four rules you need to follow before writing them:
+Learning how to write multithreaded programs is tricky. In the JRuby community there are four rules you need to follow before writing them:
 
    In general, the safest path to concurrency in JRuby is the same as on any other platform:
    1. Don't do it.
