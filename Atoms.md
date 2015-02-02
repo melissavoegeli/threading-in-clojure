@@ -54,7 +54,7 @@ And changing her martial status:
 
 One additional important thing about atoms is they use a mechanism called compare-and-set when modifying their data. This means that when a thread is about to successfully complete the action of setting an atom to its new state, it compares the old value to ensure nothing in any additional thread has already changed it. If something has already changed it, then you can expect all of the work to be thrown out, and started again with the new state of the atom.
 
-Take some time to fix our example `lib/atoms.clj` with `git checkout atoms`.
+Take some time to fix our example `lib/atoms.clj`.
 
 > _TIP: skip ahead to an implementation of using delays with `git checkout atoms-solved`_
 

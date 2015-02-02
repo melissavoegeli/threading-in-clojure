@@ -12,7 +12,7 @@ This is an example of how to give a future some work to perform.
 ~~~
 
 Lets create 10 different threads that all try to withdraw $1 from our account at the same time.
-To get started type `git checkout futures` and fill out the blanks in `lib/futures.clj`. What happened when you ran the program multiple times?
+To get started fill out the blanks in `lib/futures.clj`. What happened when you ran the program multiple times?
 
 > _TIP: skip ahead to an implementation of this answer with `git checkout futures-solved`_
 
@@ -26,7 +26,7 @@ In most other languages the way to fix this issue is to lock down our checking a
 
 You can lock shared data by `(locking shared-data (some-work))`. Which brings us to rule #4.
 
-> _TIP: skip ahead to an implementation of locking data with `git checkout futures-locking`_
+> _TIP: skip ahead to an implementation of locking data with `git checkout futures-locking-solved`_
 
 ### Delays
 
@@ -48,7 +48,7 @@ As mentioned before, that code is currently suspended (or delayed) until we want
 
 Another thing to note is if you dereference our delay once more it will not print out "Wait for it..." again. This comes in handy when multiple threads have access to the same delay. Once thread #1 dereferences the delay, thread #2 will only get the return value and not execute the same body of work again.
 
-What happens when we replace future with delay in or current solution? It doesn't make sense to delay withdrawing money from an account, unless we're waiting for someone to approve it. Fix our example `lib/delays.clj` with `git checkout delays`.
+What happens when we replace future with delay in or current solution? It doesn't make sense to delay withdrawing money from an account, unless we're waiting for someone to approve it. Fix our example in `lib/delays.clj`.
 
 > _TIP: skip ahead to an implementation of using delays with `git checkout delays-solved`_
 
