@@ -57,3 +57,5 @@ One additional important thing about atoms is they use a mechanism called compar
 Take some time to fix our example `lib/atoms.clj` with `git checkout atoms`.
 
 > _TIP: skip ahead to an implementation of using delays with `git checkout atoms-solved`_
+
+Continue on to [Agents](Agents.md).

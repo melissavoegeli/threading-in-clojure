@@ -21,3 +21,5 @@ And changing her martial status:
 We can make slight modifications to our previous example in `lib/agents.clj` with `git checkout agents`.
 
 > _TIP: skip ahead to an implementation of using delays with `git checkout agents-solved`_
+
+Continue on to [Promises](Promises.md).

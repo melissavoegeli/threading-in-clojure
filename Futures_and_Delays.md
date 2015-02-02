@@ -54,4 +54,4 @@ What happens when we replace future with delay in or current solution? It doesn'
 
 ### Differences
 
-Discuss when we would use a delay versus a future.
+Discuss when we would use a delay versus a future. Afterwards continue on to learn about [Atoms](Atoms.md).
