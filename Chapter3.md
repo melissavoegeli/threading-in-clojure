@@ -12,7 +12,7 @@ This is an example of how to give a future some work to perform.
 ~~~
 
 Lets create 10 different threads that all try to withdraw $1 from our account at the same time.
-To get started type `git checkout futures`. What happened?
+To get started type `git checkout futures`. What happened when you ran the program multiple times?
 
 > _TIP: skip ahead to an implementation of this answer with `git checkout futures-solved`_
 
@@ -26,13 +26,13 @@ In most other languages the way to fix this issue is to lock down our checking a
 
 You can lock shared data by `(locking shared-data (some-work))`. Which brings us to rule #4.
 
-###### > _TIP: skip ahead to an implementation of locking data with `git checkout futures-locking`_
+> _TIP: skip ahead to an implementation of locking data with `git checkout futures-locking`_
 
 ### Delays
 
 Delays are a multithreading construct that are similar to futures.
 
-   *Delay* A construct that suspends some body of code, evaluating it in another thread only upon demand.
+> **Delay:** A construct that suspends some body of code, evaluating it in another thread only upon demand.
 
 An example of a delay is:
 ~~~clojure
