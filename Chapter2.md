@@ -6,9 +6,12 @@ Lets walk through our list of why the community generally advises you to not to 
 
 As we alluded to before, we're going to use the example of a bank account. We'll be going out of our way to use Java APIs, which means this is not a typical Clojure approach to this problem. Now you'll know how to make Java classes in Clojure, so you're welcome.
 
-Bank accounts have a running balance that (ideally) should never drop below $0. Normal things that you can do with a bank account are 1) check the balance at a certain point in time, 2) withdraw money from it, and 3) make deposits. These are the features we will be focussing on for our bank account.
+Bank accounts have a running balance that (ideally) should never drop below $0. Normal things that you can do with a bank account are:
+ 1. check the balance at a certain point in time
+ 2. withdraw money
+ 3. make deposits
 
-We're going to get started with some Java API code that defines an account interface and account class.
+These are the features we will be focussing on for our bank account.  We're going to get started with some Java API code that defines an account interface and account class.
 
 ~~~clojure
     1 (defprotocol IAccount
@@ -25,8 +28,8 @@ We're going to get started with some Java API code that defines an account inter
     12 (def melissas-account (Account. 5))
 ~~~
 
-> git checkout getting-started
-> lein repl; (load-file "/path/to/account.clj")
+`git checkout getting-started`
+`lein repl; (load-file "/path/to/account.clj")`
 
 Above we have created an account data type that keeps track of our checking account balance.
 You can query the balance, and make deposits and withdrawals. Keep in mind this is a very Java approach to this problem.

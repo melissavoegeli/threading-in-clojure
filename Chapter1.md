@@ -12,7 +12,7 @@ This workshop will get your feet wet with solving a simple concurrency problem t
 * Learn why multithreaded programming is important as well as the difference between parallelism and concurrency.
 * How Clojure solves common multithreading problems like race conditions.
 * Several design patterns for solving a simple problem using multiple threads.
-  * Futures and
+  * Futures
   * Delays
   * Atoms
   * Agents
@@ -43,7 +43,7 @@ Learning how to write multithreaded programs is tricky. In the JRuby community t
 >   3. If you must share data across threads, don't share mutable data.
 >   4. If you must share mutable data across threads, synchronize access to that data.
 
-3 and 4 talk about something called mutable data. Mutable data is data that you can mutate. Mutable data is dangerous when it is accessed by multiple threads. If you have more than one thread reading or changing data, then the data can potentially be in an inconsistent state that causes something called _RACE CONDITIONS_.
+#3 and #4 talk about something called mutable data. Mutable data is data that you can mutate. Mutable data is dangerous when it is accessed by multiple threads. If you have more than one thread reading or changing data, then the data can potentially be in an inconsistent state that causes something called _RACE CONDITIONS_.
 
 > **Race Condition:** A race condition occurs when two or more threads can access shared data and they try to change it at the  same time. Because the thread scheduling algorithm can swap between threads at any time, you don't know the order in which the threads will attempt to access the shared data.
 
