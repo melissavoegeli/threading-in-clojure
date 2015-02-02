@@ -2,7 +2,7 @@
 
 ### Futures
 
-> **Futures** Allows you to create a new thread and give it some work to perform.
+> **Futures:** Allows you to create a new thread and give it some work to perform.
 
 This is an example of how to give a future some work to perform.
 
@@ -11,7 +11,8 @@ This is an example of how to give a future some work to perform.
                    :done!)))
 ~~~
 
-Lets create 10 different threads that all try to withdraw $1 from our account at the same time. To get started type `git checkout futures`. What happened?
+Lets create 10 different threads that all try to withdraw $1 from our account at the same time.
+To get started type `git checkout futures`. What happened?
 
 > _TIP: skip ahead to an implementation of this answer with `git checkout futures-solved`_
 
@@ -21,11 +22,11 @@ This is why it is bad to share our state in 10 different threads, and what is re
 
 In most other languages the way to fix this issue is to lock down our checking account balance when it is being used by a thread. When thread 1 is checking if the balance is valid in order to continue making the withdrawal, we can lock the account down until we're finished. When the account is locked, no other thread can read or write to it. The bad thing is that it will slow down PERFORMANCE!
 
-> **Blocking** Waiting for an operation to finish before continuing with your work.
+> **Blocking:** Waiting for an operation to finish before continuing with your work.
 
 You can lock shared data by `(locking shared-data (some-work))`. Which brings us to rule #4.
 
-> _TIP: skip ahead to an implementation of locking data with `git checkout futures-locking`_
+###### > _TIP: skip ahead to an implementation of locking data with `git checkout futures-locking`_
 
 ### Delays
 
