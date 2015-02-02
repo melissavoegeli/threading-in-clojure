@@ -9,12 +9,12 @@
                              (set! checking (- checking val))
                              (print "Insufficient funds!\n")))
    (deposit [this val] (set! checking (+ checking val))))
-(def melissa (Account. 5))
+(def your-name (Account. 5))
 
-(balance melissa)) ; $5
+(balance your-name)) ; $5
 
-(withdraw melissa 1))
-(balance melissa) ; $6
+(withdraw your-name 1))
+(balance your-name) ; $6
 
-(deposit melissa 100))
-(balance melissa) ; $106
+(deposit your-name 100))
+(balance your-name) ; $106

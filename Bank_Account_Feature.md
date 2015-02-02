@@ -25,7 +25,7 @@ These are the features we will be focussing on for our bank account.  We're goin
     9                             (set! checking (- checking val))
     10                            (print "Insufficient funds!\n")))
     11  (deposit [this val] (set! checking (+ checking val))))
-    12 (def melissas-account (Account. 5))
+    12 (def your-names-account (Account. 5))
 ~~~
 
 Above we have created an account data type that keeps track of our checking account balance.
