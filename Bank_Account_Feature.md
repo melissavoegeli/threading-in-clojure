@@ -27,12 +27,11 @@ These are the features we will be focussing on for our bank account.  We're goin
     11  (deposit [this val] (set! checking (+ checking val))))
     12 (def melissas-account (Account. 5))
 ~~~
+
 Above we have created an account data type that keeps track of our checking account balance.
 You can query the balance, and make deposits and withdrawals. Keep in mind this is a very Java approach to this problem.
 
-First checkout our initial code and try it out for yourself. `git checkout getting-started`
-
-Next, start your repl and load up the file. `lein repl; (load-file "/path/to/account.clj")`
+Next, start your repl and load up our `getting-started.clj` file that resides in our`lib` directory. `lein repl; (load-file "/path/to/lib/getting-started.clj")`
 
 If we run:
 
