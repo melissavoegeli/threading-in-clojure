@@ -1,6 +1,6 @@
 ## Atoms
 
-   *Atom* A datatype that is indivisible and unchanging. A process generates a new atom and we choose to associate the identity with the new atom.  Which keeps us from mutating the data.
+> **Atom:** A datatype that is indivisible and unchanging. A process generates a new atom and we choose to associate the identity with the new atom.  Which keeps us from mutating the data.
 
 ### State and Identity without Clojure
 
@@ -10,13 +10,17 @@ Imagine that we have a ledger with the title "Sansa Stark" on it. This ledger is
 
 Next we make some plans and write some code to marry her off to house Lannister. So in thread #1 we have:
 
+~~~ruby
     if (Sansa.is_married?)
       Sansa.marry(Tyrion)
+~~~
 
 Our thread #1 successfully executes `if (Sansa.is_married?)`, but just before we marry her off our execution switches to thread #2:
 
+~~~ruby
     if (Sansa.is_married?)
       Sansa.marry(Joffrey)
+~~~
 
 At this point in time our ledger of Sansa Stark still says that Sansa's state represents that she is yet not married. So we go ahead and successfully marry her off to Joffrey. In order to do so we execute the above code and erase "not married" from our ledger and write in "married to Joffrey."
 
@@ -38,14 +42,18 @@ This is an example of how atoms are used. We move over all the unchanged informa
 
 If we wanted to represent what we know about Sansa Stark as an atom:
 
+~~~clojure
     (def sansa (atom {:name "Sansa Stark" :house "Stark" :married? false}))
+~~~
 
 And changing her martial status:
 
+~~~clojure
     (swap! sansa (comp #(assoc % :married? true)))
+~~~
 
 One additional important thing about atoms is they use a mechanism called compare-and-set when modifying their data. This means that when a thread is about to successfully complete the action of setting an atom to its new state, it compares the old value to ensure nothing in any additional thread has already changed it. If something has already changed it, then you can expect all of the work to be thrown out, and started again with the new state of the atom.
 
-Lets rewrite our current implementation to use atoms.
+Take some time to fix our example `lib/atoms.clj` with `git checkout atoms`.
 
-_TIP: skip ahead to an implementation of using delays with `git checkout atoms`_
+> _TIP: skip ahead to an implementation of using delays with `git checkout atoms-solved`_
