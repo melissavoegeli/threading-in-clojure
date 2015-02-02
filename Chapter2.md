@@ -33,6 +33,7 @@ You can query the balance, and make deposits and withdrawals. Keep in mind this 
 First checkout our initial code and try it out for yourself. `git checkout getting-started`
 
 Next, start your repl and load up the file. `lein repl; (load-file "/path/to/account.clj")`
+
 If we run:
 
 `(balance a)`

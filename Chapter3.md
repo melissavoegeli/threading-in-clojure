@@ -12,11 +12,11 @@ This is an example of how to give a future some work to perform.
 ~~~
 
 Lets create 10 different threads that all try to withdraw $1 from our account at the same time.
-To get started type `git checkout futures`. What happened when you ran the program multiple times?
+To get started type `git checkout futures` and fill out the blanks in `lib/futures.clj`. What happened when you ran the program multiple times?
 
 > _TIP: skip ahead to an implementation of this answer with `git checkout futures-solved`_
 
-When thread 1 is checking if the value to be withdrawn is still less than the current balance in the checking account on line 8, it proceeds to line 9 to deduct the amount. However, in the time it takes for thread 1 to get from line 8 to line 9, thread 2 could have successfully withdrawn the last dollar!
+When thread #1 is checking if the value to be withdrawn is still less than the current balance in the checking account on line 8, it proceeds to line 9 to deduct the amount. However, in the time it takes for thread #1 to get from line 8 to line 9, thread #2 could have successfully withdrawn the last dollar!
 
 This is why it is bad to share our state in 10 different threads, and what is referred to as a race condition. Running your program multiple times will result in inconsistent results each time it is executed.
 
@@ -48,7 +48,7 @@ As mentioned before, that code is currently suspended (or delayed) until we want
 
 Another thing to note is if you dereference our delay once more it will not print out "Wait for it..." again. This comes in handy when multiple threads have access to the same delay. Once thread #1 dereferences the delay, thread #2 will only get the return value and not execute the same body of work again.
 
-What happens when we replace future with delay in or current solution? It doesn't make sense to delay withdrawing money from an account, unless we're waiting for someone to approve it. Fix our example with `git checkout delays`
+What happens when we replace future with delay in or current solution? It doesn't make sense to delay withdrawing money from an account, unless we're waiting for someone to approve it. Fix our example `lib/delays.clj` with `git checkout delays`.
 
 > _TIP: skip ahead to an implementation of using delays with `git checkout delays-solved`_
 
