@@ -47,4 +47,4 @@ Rules #3 and #4 talk about something called mutable data. Mutable data is data t
 
 > **Race Condition:** A race condition occurs when two or more threads can access shared data and they try to change it at the  same time. Because the thread scheduling algorithm can swap between threads at any time, you don't know the order in which the threads will attempt to access the shared data.
 
-Clojure inherently allows us to protect ourselves from this right off the bat. We'll see more proof for this later.
+Clojure inherently allows us to protect ourselves from this right off the bat. We'll see more proof for this later. For now lets [continue on to learning about the Bank Account Feature](Bank_Account_Feature.md) we'll be implementing to learn these new programming constructs.
