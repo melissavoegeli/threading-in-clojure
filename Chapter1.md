@@ -12,12 +12,12 @@ This workshop will get your feet wet with solving a simple concurrency problem t
 * Learn why multithreaded programming is important as well as the difference between parallelism and concurrency.
 * How Clojure solves common multithreading problems like race conditions.
 * Several design patterns for solving a simple problem using multiple threads.
- 1. Futures and
- 2. Delays
- 3. Atoms
- 4. Agents
- 5. Promises
- 6. Refs
+  * Futures and
+  * Delays
+  * Atoms
+  * Agents
+  * Promises
+  * Refs
 
 ### Requirements
 
@@ -31,7 +31,7 @@ Multithreaded programming is a way for us to write applications with higher perf
 
 Machines are very powerful, but they are not becoming as powerful as quickly as they used to. CPU clock speeds have barely increased in recent years and there are more dual core and quad core computers. This means in order to make a program near twice as fast, you have to divide up work between the two cores. Enter multithreaded programming!
 
-> **Concurrency versus Parallelism** _Concurrency_ refers to managing more than one job at the same time. An example of
+> **Concurrency versus Parallelism:** _Concurrency_ refers to managing more than one job at the same time. An example of
 > concurrency would be using one hand to juggle multiple balls. _Parallelism_ is executing two jobs at the same time. For
 > example, instead of juggling with one hand you can use both. So now when you juggle each hand can simultaneously try to catch or throw a ball at the same time.
 
