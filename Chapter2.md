@@ -10,6 +10,7 @@ Bank accounts have a running balance that (ideally) should never drop below $0. 
 
 We're going to get started with some Java API code that defines an account interface and account class.
 
+~~~clojure
     1 (defprotocol IAccount
     2   (balance [this])
     3   (withdraw [this val])
@@ -22,23 +23,24 @@ We're going to get started with some Java API code that defines an account inter
     10                            (print "Insufficient funds!\n")))
     11  (deposit [this val] (set! checking (+ checking val))))
     12 (def melissas-account (Account. 5))
+~~~
 
-    > git checkout getting-started
-    > lein repl; (load-file "/path/to/account.clj")
+> git checkout getting-started
+> lein repl; (load-file "/path/to/account.clj")
 
 Above we have created an account data type that keeps track of our checking account balance.
 You can query the balance, and make deposits and withdrawals. Keep in mind this is a very Java approach to this problem.
 
 If we run:
 
-    > (balance a)
+`(balance a)`
 
 We get 5, or essentially $5.
 
-    > (deposit 10)
+`(deposit 10)`
 
 We get $15.
 
-    > (withdraw 10)
+`(withdraw 10)`
 
 We get $5 again.
