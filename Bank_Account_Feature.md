@@ -2,16 +2,16 @@
 
 ### Our Feature, the Bank Account
 
-Lets walk through our list of why the community generally advises you to not to use threading as your first choice for solving a problem. In particular, lets see why you shouldn't share mutable data across threads.
+While we're learning about writing multiple threads in Clojure, we'll be focusing on a single feature that we'll implement in several different ways. For our first example we'll be going out of our way to use Java APIs, which means this is not a typical Clojure approach to this problem.
 
-As we alluded to before, we're going to use the example of a bank account. We'll be going out of our way to use Java APIs, which means this is not a typical Clojure approach to this problem. Now you'll know how to make Java classes in Clojure, so you're welcome.
+Here is a quick explanation of our feature:
 
-Bank accounts have a running balance that (ideally) should never drop below $0. Normal things that you can do with a bank account are:
- 1. check the balance at a certain point in time
- 2. withdraw money
- 3. make deposits
+    Bank accounts have a running balance that (ideally) should never drop below $0. Normal things that you can do with a bank account are:
+      1. check the balance at any point in time
+      2. withdraw money
+      3. deposit money
 
-These are the features we will be focussing on for our bank account.  We're going to get started with some Java API code that defines an account interface and account class.
+These are the features we will be focussing on for our bank account.  We're going to get started with some Java API code that defines an account interface and account class.  Don't worry too much about what is going on in the implementation.
 
 ~~~clojure
     1 (defprotocol IAccount
@@ -20,7 +20,7 @@ These are the features we will be focussing on for our bank account.  We're goin
     4   (deposit [this val]))
     5 (deftype Account [^:volatile-mutable checking]
     6   IAccount
-    7   (balance [this] (. this checking))
+    7   (balance [this] (println (str "Balance: $" (. this checking))))
     8   (withdraw [this val] ( if (<= val checking)
     9                             (set! checking (- checking val))
     10                            (print "Insufficient funds!\n")))
@@ -28,16 +28,17 @@ These are the features we will be focussing on for our bank account.  We're goin
     12 (def your-names-account (Account. 5))
 ~~~
 
-Above we have created an account data type that keeps track of our checking account balance.
-You can query the balance, and make deposits and withdrawals. Keep in mind this is a very Java approach to this problem.
+Above we have created an account class that keeps track of our checking account balance.  You can query the balance as well as make deposits and withdrawals. Keep in mind this is a very Java approach to this problem.
 
-Next, start your repl and load up our `getting-started.clj` file that resides in our`lib` directory. `lein repl; (load-file "/path/to/lib/getting-started.clj")`
+To give this code a try, start your Clojure repl and load up our `getting-started.clj` file that resides in the `lib` directory.
+
+`lein repl; (load-file "/path/to/lib/getting-started.clj")`
 
 If we run:
 
 `(balance a)`
 
-We get 5, or essentially $5.
+We get $5.
 
 `(deposit 10)`
 
@@ -47,4 +48,4 @@ We get $15.
 
 We get $5 again.
 
-Now that we have an idea of what we're going to be creating, lets learn about [Futures and Delays](Futures_and_Delays.md).
+Now that we have an idea of what we're going to be creating, lets move on to [Futures and Delays](Futures_and_Delays.md).

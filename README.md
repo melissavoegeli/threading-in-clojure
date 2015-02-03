@@ -30,13 +30,13 @@ This workshop will get your feet wet with solving a simple concurrency problem w
 
 Machines are very powerful, but they are not becoming as powerful as quickly as they used to. CPU clock speeds have barely increased in recent years and there are more dual core and quad core computers. This means in order to make a program near twice as fast, you have to parallelize work on the separate cores.
 
-Keep in mind that you can run a concurrent program with multiple threads that don't execute on separate cores all at the same time.  This design is called concurrency.
-
 #### Concurrency versus Parallelism
+
+Keep in mind that you can run a concurrent program with multiple threads that don't execute on separate cores all at the same time.  This property is called concurrency, which is a little different than parallelism.
 
 > **Concurrency:** Managing more than one job at the same time. Creating several threads that take turns executing on a single core is an example of a concurrent program.
 
-> **Parallelism** Executing two jobs at the same time. An example of a parallelized program is creating two different threads that execute on two separate cores at the same time.
+> **Parallelism:** Executing two jobs at the same time. An example of a parallelized program is creating two different threads that execute on two separate cores at the same time.
 
 #### When Should You Write a Multithreaded Program?
 
