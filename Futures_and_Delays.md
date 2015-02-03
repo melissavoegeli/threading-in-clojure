@@ -30,7 +30,7 @@ Lets create 10 different threads that all try to withdraw $1 from our account at
 
 > _TIP: skip ahead to an implementation of this answer with `git checkout futures-solved`_
 
-#### Explanation
+##### Explanation
 
 When thread #1 is checking if the value to be withdrawn is still less than the current balance in the checking account on line 8, it proceeds to line 9 to deduct the amount. However, in the time it takes for thread #1 to get from line 8 to line 9, thread #2 could have successfully withdrawn the last dollar!
 
