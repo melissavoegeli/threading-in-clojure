@@ -43,10 +43,10 @@ Keep in mind that you can run a concurrent program with multiple threads that do
 Learning how to write multithreaded programs is tricky. In the JRuby community there are four rules you need to follow before writing them:
 
     In general, the safest path to concurrency in JRuby is the same as on any other platform:
-  1. Don't do it.
-  2. If you must do it, don't share data across threads.
-  3. If you must share data across threads, don't share mutable data.
-  4. If you must share mutable data across threads, synchronize access to that data.
+    1. Don't do it.
+    2. If you must do it, don't share data across threads.
+    3. If you must share data across threads, don't share mutable data.
+    4. If you must share mutable data across threads, synchronize access to that data.
 
 Rules #3 and #4 talk about something called mutable data. Mutable data means  the ability to mutate, or change, a piece of data. Mutable data is dangerous when it is accessed by multiple threads. If you have more than one thread reading or changing data, then the data can potentially be in an inconsistent state that causes something called _RACE CONDITIONS_.
 
