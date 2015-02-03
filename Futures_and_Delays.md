@@ -24,7 +24,7 @@ We can return `:done!` from our future as many times as we want, but keep in min
 
 ***
 
-#### Exercise 5-10m
+#### Programming Exercise
 
 Lets create 10 different threads that all try to withdraw $1 from our account at the same time.  To get started fill out the blanks in `lib/futures.clj`. What happened when you ran the program multiple times?
 
@@ -32,15 +32,23 @@ Lets create 10 different threads that all try to withdraw $1 from our account at
 
 ##### Explanation
 
-When thread #1 is checking if the value to be withdrawn is still less than the current balance in the checking account on line 8, it proceeds to line 9 to deduct the amount. However, in the time it takes for thread #1 to get from line 8 to line 9, thread #2 could have successfully withdrawn the last dollar!
+Our program didn't behave consistently.
 
-This is why it is bad to share our state in 10 different threads, and what is referred to as a race condition. Running your program multiple times will result in inconsistent results each time it is executed.
+When _thread #1_ is checking if the value to be withdrawn is still less than the current checking balance on `line 8`, it proceeds to `line 9` to deduct the amount. Keep in mind that the time it takes for _thread #1_ to get from `line 8` to `line 9,` _thread #2_ could have successfully withdrawn the last dollar already!
 
-In most other languages the way to fix this issue is to lock down our checking account balance when it is being used by a thread. When thread 1 is checking if the balance is valid in order to continue making the withdrawal, we can lock the account down until we're finished. When the account is locked, no other thread can read or write to it. The bad thing is that it will slow down PERFORMANCE!
+This is why it is bad to share our state in several threads, and what was aforementioned as a **race condition**. Running your program multiple times will result in inconsistent results each time it is executed.
 
-> **Blocking:** Waiting for an operation to finish before continuing with your work.
+In most other languages the way to fix this issue is to block access to our checking account when it is in use by another thread. When _thread #1_ is checking if the balance is valid in order to continue making the withdrawal, we can lock the account down until we're finished. When the account is locked, no other thread will read or write to it. The bad thing is that it will slow down PERFORMANCE!
 
-You can lock shared data by `(locking shared-data (some-work))`. Which brings us to rule #4.
+> **Blocking:** Waiting for an operation to finish before continuing with your work. A common way to fix race conditions.
+
+You can lock shared in data Clojure.
+
+~~~clojure
+    (locking shared-data (some-work-performed-on-shared-data))
+~~~
+
+Rewrite your solution to use this mechanism. Did it work?
 
 > _TIP: skip ahead to an implementation of locking data with `git checkout futures-locking-solved`_
 
