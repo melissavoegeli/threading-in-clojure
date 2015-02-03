@@ -4,17 +4,33 @@
 
 > **Futures:** Allows you to create a new thread and give it some work to perform.
 
-This is an example of how to give a future some work to perform.
+This is an example of how to create a future that evaluates a body of code in another thread.
 
 ~~~clojure
-    (def f (future (println "Running...")
+    (def f (future (Thread/sleep 3000)
+                   (println "Running after 3 seconds...")
                    :done!)))
 ~~~
 
-Lets create 10 different threads that all try to withdraw $1 from our account at the same time.
-To get started fill out the blanks in `lib/futures.clj`. What happened when you ran the program multiple times?
+Our global variable `f` will execute a print statement and return the value `:done!`
+
+In order to obtain the value of our future you must _dereference_ it. Here is an example:
+
+~~~clojure
+    @f ; => :done!
+~~~
+
+We can return `:done!` from our future as many times as we want, but keep in mind that the body of code will only be executed once. Dereferencing a future will block if the code it is evaluating has not completed yet.
+
+***
+
+#### Exercise 5-10m
+
+Lets create 10 different threads that all try to withdraw $1 from our account at the same time.  To get started fill out the blanks in `lib/futures.clj`. What happened when you ran the program multiple times?
 
 > _TIP: skip ahead to an implementation of this answer with `git checkout futures-solved`_
+
+#### Explanation
 
 When thread #1 is checking if the value to be withdrawn is still less than the current balance in the checking account on line 8, it proceeds to line 9 to deduct the amount. However, in the time it takes for thread #1 to get from line 8 to line 9, thread #2 could have successfully withdrawn the last dollar!
 
