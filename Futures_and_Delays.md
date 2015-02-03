@@ -54,7 +54,7 @@ Rewrite your solution to use this mechanism. Did it work?
 
 ### Delays
 
-Delays are a multithreading construct that are similar to futures.
+Delays are a multithreading construct that are similar to futures. There is only one small difference.
 
 > **Delay:** A construct that suspends some body of code, evaluating it in another thread only upon demand.
 
@@ -64,18 +64,18 @@ An example of a delay is:
                   :done))
 ~~~
 
-As mentioned before, that code is currently suspended (or delayed) until we want to call it. To evaluate the delay, you dereference it.
+As mentioned before, that code is currently suspended (or delayed) until we want to call it. To evaluate the delay, you dereference it just as you would a future.
 
 ~~~clojure
     @d ; => "Wait for it...", :done
 ~~~
 
-Another thing to note is if you dereference our delay once more it will not print out "Wait for it..." again. This comes in handy when multiple threads have access to the same delay. Once thread #1 dereferences the delay, thread #2 will only get the return value and not execute the same body of work again.
+When you dereference a delay multiple times it will execute its work more than once. This comes in handy when multiple threads have access to the same delay. Once _thread #1_ dereferences the delay, _thread #2_ will only get the return value and not execute the same body of work again.
 
-What happens when we replace future with delay in or current solution? It doesn't make sense to delay withdrawing money from an account, unless we're waiting for someone to approve it. Fix our example in `lib/delays.clj`.
+What happens when we replace future with delay in or current solution? Rewrite our solution to create a list of delayed work that will be executed by several threads by fixing the example in `lib/delays.clj`.
 
 > _TIP: skip ahead to an implementation of using delays with `git checkout delays-solved`_
 
-### Differences
+### Discussion
 
-Discuss when we would use a delay versus a future. Afterwards continue on to learn about [Atoms](Atoms.md).
+Discuss when we would want to use a future and when it would make more sense to use a delay. Can you give any real world application examples? Afterwards continue on to learn about [Atoms](Atoms.md).
