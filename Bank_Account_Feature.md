@@ -33,6 +33,7 @@ Above we have created an account class that keeps track of our checking account 
 To give this code a try, start your Clojure repl and load up our `getting-started.clj` file that resides in the `lib` directory.
 
 > `$ lein repl`
+
 > `user=> (load-file "/path/to/lib/getting-started.clj")`
 
 If we run:
