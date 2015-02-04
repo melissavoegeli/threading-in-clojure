@@ -6,7 +6,8 @@ While we're learning about writing multiple threads in Clojure, we'll be focusin
 
 Here is a quick explanation of our feature:
 
-    Bank accounts have a running balance that (ideally) should never drop below $0. Normal things that you can do with a bank account are:
+    Bank accounts have a running balance that (ideally) should never drop below $0.
+    Normal things that you can do with a bank account are:
       1. check the balance at any point in time
       2. withdraw money
       3. deposit money
