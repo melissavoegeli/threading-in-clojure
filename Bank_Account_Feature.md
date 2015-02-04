@@ -39,15 +39,15 @@ To give this code a try, start your Clojure repl and load up our `getting-starte
 
 If we run:
 
-`(balance a)`
+`(balance your-names-account)`
 
 We get $5.
 
-`(deposit 10)`
+`(deposit your-names-account 10)`
 
 We get $15.
 
-`(withdraw 10)`
+`(withdraw your-names-account 10)`
 
 We get $5 again.
 
