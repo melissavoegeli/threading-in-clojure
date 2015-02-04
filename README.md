@@ -9,9 +9,9 @@ Clojure is known for having good constructs for easily managing multiple threads
 This will get your feet wet with solving a simple concurrency problem using many of Clojure's multithreading constructs.
 
 
-Notes:
+> Notes:
+> Other benefits besides performance (Chris K)
 
-Other benefits besides performance (CHris K)
 ### Goals
 
 * Learn why multithreaded programming is important as well as the difference between parallelism and concurrency.
