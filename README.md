@@ -32,7 +32,7 @@ This will get your feet wet with solving a simple concurrency problem using many
 
 ## Multithreaded Programming in Clojure
 
-Machines are very powerful, but they are not becoming as powerful as quickly as they used to. CPU clock speeds have barely increased in recent years and there are more dual core and quad core computers. This means in order to make a program near twice as fast, you have to parallelize work on the separate cores.
+Machines are very powerful, but they are not becoming as powerful as quickly as they used to. CPU clock speeds have barely increased in recent years and there are more dual core and quad core computers. This means in order to make a program nearly twice as fast, you have to parallelize work on the separate cores.
 
 #### Concurrency versus Parallelism
 
