@@ -4,7 +4,7 @@
 
 Multithreaded programming is a way for us to write applications with higher performance by providing simultaneous execution of programs.  Some examples include handling multiple connection requests, collecting and digesting big data, and handling simultaneous transactions on a checking account.
 
-Clojure is known for having good constructs for easily managing multiple threads and not have them clobber each other to cause race conditions.  Clojure accomplishes this by not having threads modify data, but instead create an identity to represent data's state at any given point in time.
+Clojure was designed to have efficient and safe threading practices out of the box, and has many good constructs for easily managing multiple threads and not have them clobber each other to cause race conditions.  Clojure accomplishes this by not having threads modify data, but instead create an identity to represent data's state at any given point in time.
 
 This will get your feet wet with solving a simple concurrency problem using many of Clojure's multithreading constructs.
 
