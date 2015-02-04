@@ -1,21 +1,21 @@
-; Create the initial agent
+; create an agent to represent your checking account
 ____
 
-(defn balance [] (:checking @a))
+; create a balance function to check the current balance
+____
 
 (defn withdraw [account val]
-    (let [known-balance (balance)]
+    (let [known-balance (balance account)]
       (Thread/sleep 1000)
-      (let [new-account (if (<= val (:checking account) )
-                            (assoc account :checking (- (:checking account) val))
-                            (do
-                              (println "Insufficient funds!")
-                              account))]
-           (println (str "Known Balance: " known-balance ", Current Balance: " (balance new-account)))
+      (let [new-account
+            ; rewrite withdraw to work the same was as check-and-withdraw from our previous exercise
+           ]
+           (println (str "Known " known-balance ", Current Balance: $" (:checking new-account)))
            new-account)))
-(doseq [i (range 10)]
- (do
-    ____ ; Show that we asynchronously send of work to our agent
-    (println "Tried to withdraw $1")))
 
-(balance)
+; create a loop to send work to the agent that with withdraw a known amount
+; be sure to include a print statement much like the previous example to demonstrate its asynchronouse property
+____
+
+; check the balance at the end
+____
