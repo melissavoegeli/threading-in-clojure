@@ -6,8 +6,12 @@ Multithreaded programming is a way for us to write applications with higher perf
 
 Clojure is known for having good constructs for easily managing multiple threads and not have them clobber each other to cause race conditions.  Clojure accomplishes this by not having threads modify data, but instead create an identity to represent data's state at any given point in time.
 
-This workshop will get your feet wet with solving a simple concurrency problem with many of Clojure's multithreading constructs.
+This will get your feet wet with solving a simple concurrency problem using many of Clojure's multithreading constructs.
 
+
+Notes:
+
+Other benefits besides performance (CHris K)
 ### Goals
 
 * Learn why multithreaded programming is important as well as the difference between parallelism and concurrency.
