@@ -11,16 +11,16 @@ Refs are Clojure’s coordinated reference type. You can ensure that you will be
 
 ### Using a Ref
 
-Creating a ref looks like:
+We can create a Ref called Sansa.  Sansa keeps track of all of her siblings.  So far she only has one.
 
 ~~~clojure
     (def sansa (ref {:siblings #{"Rob"}}))
 ~~~
 
-We can deliver on our promises:
+We can create a transaction with `dosync` that will add more siblings to Sansa :
 
 ~~~clojure
-    (alter sansa update-in [:siblings] conj "Bran" "Jon" "Rickon")
+    (dosync (alter sansa update-in [:siblings] conj "Bran" "Jon" "Rickon"))
 ~~~
 
 Since Refs are known for safely updating multiple items in a single transaction, lets implement a safe way to transfer money from one account to another. Fix out program `lib/refs.clj`.

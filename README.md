@@ -14,10 +14,8 @@ This will get your feet wet with solving a simple concurrency problem using many
 * How Clojure solves common multithreading problems like race conditions.
 * Several design patterns for solving a simple problem using multiple threads.
   * Futures
-  * Delays
   * Atoms
   * Agents
-  * Promises
   * Refs
 
 ### Requirements
