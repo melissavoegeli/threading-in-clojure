@@ -12,20 +12,22 @@ Interacting with an agent is very similar to using atoms. If we wanted to repres
    (def checking-account (agent {:balance 100 :holder "my-name"}))
 ~~~
 
-And changing her martial status:
+And changing the account holder:
 
 ~~~clojure
-   (send checking-account (comp #(assoc % :holder "your-name")))
+   (send! checking-account (comp #(assoc % :holder "your-name")))
 ~~~
 
 ***
 
 #### Programming Exercise
 
-We can make slight modifications to our previous example in `lib/agents.clj`.
+We can make slight modifications to our previous example in `lib/agents.clj`.  Simply follow the directions provided to you in the comments.
 
 > _TIP: skip ahead to an implementation of using delays with `git checkout agents-solved`_
 
 ### Discussion
 
-Can you give any real world examples about when it would be more appropriate to use an atom? An agent? Continue on to [Refs](Refs.md).
+How would you explain the differences between an Atom and an Agent?  How are they similar?  Can you give any examples of when you would want to use one over the other?
+
+Continue on to [Refs](Refs.md).
