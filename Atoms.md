@@ -46,7 +46,7 @@ If we wanted to represent what we know about Sansa Stark as an atom:
 And changing her martial status:
 
 ~~~clojure
-   (swap! checking-account (comp #(assoc % :holder "your-name")))
+   (swap! checking-account assoc :holder "your-name")
 ~~~
 
 ***
