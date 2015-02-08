@@ -35,7 +35,9 @@ To give this code a try, start your Clojure repl and load up our `getting-starte
 
 `$ lein repl`
 
-`user=> (load-file "/path/to/lib/getting-started.clj")`
+`$ lein   `
+
+`user=> (load-file "lib/getting-started.clj")`
 
 If we run:
 
