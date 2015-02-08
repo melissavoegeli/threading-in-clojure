@@ -15,7 +15,7 @@ Interacting with an agent is very similar to using atoms. If we wanted to repres
 And changing the account holder:
 
 ~~~clojure
-   (send! checking-account (comp #(assoc % :holder "your-name")))
+   (send checking-account assoc :holder "your-name")
 ~~~
 
 ***
