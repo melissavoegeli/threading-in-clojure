@@ -4,10 +4,10 @@
 
 Refs are Clojure’s coordinated reference type. You can ensure that you will be able to safely update multiple identities with multiple operations. This is most likely something you have seen before with database transactions. This sort of safety guarantees several things for your multi threaded programs:
 
-• No possibility of the involved refs ever being in an observable inconsistent state
-• No possibility of race conditions among the involved refs
-• No manual use of locks, monitors, or other low-level synchronization primitives
-• No possibility of deadlocks
+* No possibility of the involved refs ever being in an observable inconsistent state
+* No possibility of race conditions among the involved refs
+* No manual use of locks, monitors, or other low-level synchronization primitives
+* No possibility of deadlocks
 
 ### Using a Ref
 
