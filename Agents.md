@@ -28,4 +28,4 @@ We can make slight modifications to our previous example in `lib/agents.clj`.
 
 ### Discussion
 
-Can you give any real world examples about when it would be more appropriate to use an atom? An agent? Continue on to [Promises](Promises.md).
+Can you give any real world examples about when it would be more appropriate to use an atom? An agent? Continue on to [Refs](Refs.md).
