@@ -22,7 +22,7 @@ And changing the account holder:
 
 #### Programming Exercise
 
-We can make slight modifications to our previous example in `lib/agents.clj`.  Simply follow the directions provided to you in the comments.
+We can make slight modifications to our previous example in `lib/agents.clj`.  Simply follow the directions provided to you in the comments.  You'll notice that there are not many changes to be made in implementation, but will notice a subtle difference in behavior of your program.
 
 > _TIP: skip ahead to an implementation of using delays with `git checkout agents-solved`_
 

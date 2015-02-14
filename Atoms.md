@@ -2,40 +2,37 @@
 
 > **Atom:** A datatype that is indivisible and unchanging. A process generates a new atom and we choose to associate the identity with the new atom, which keeps us from mutating the data.
 
-### State and Identity without Clojure
+### State and Value in Clojure
 
-Let's reference our list of threading rules from a few chapters ago. Specifically rule #3.
+In our previous problem we were disobeying our rules for thread safety by sharing mutable state between threads. We ended up locking up the shared data when it was in use in order to prevent this.  This should remind us of rule #3 from our rules for the safest path to concurrency.
 
 > `If you must share data across threads, don't share mutable data.`
 
 Here is where we get to talk about Clojure's bread and butter: immutable state. The problem that we have encountered with futures is the fact that we have multiple threads accessing some data that can be in an unknown state. Clojure takes care of this with a reference type known as the atom.
 
-In Clojure, there is a difference between a data's state and identity. In most other languages there is hardly a difference between these two properties. For example lets pretend we implemented our checking account in Ruby. In our withdrawal function we would have some code that looks like this:
+It may be somewhat difficult to tell the difference between your data's state and its value in your code.  Lets explore this idea with an example.
 
-~~~ruby
-    # thread 1
-    checking_account = Account.new
-    checking_account.deposit(100)
-    checking_account.holder('Sansa')
-    amount = 105
-    ...
-    if (!checking_account.is_zero?)
-      checking_account.withdraw(amount)
-~~~
+Think of a person as an example, let's say YOU!  You have existed in many different states throughout your lifetime.  You were once an infant, child, teenager, and now an adult.  But remember, you have never existed in multiple states at once.  For example, you cannot be both an infant as well as an adult.  
 
-There is nothing inherently bad about this implementation. We have established a reference to an `Account` which is meant to represent our checking account.  The holder of the checking account is `Sansa`. Overtime our account could have existed in many different states. It could have had $0, $100, or $1000.  Our checking account state may change from one point in time to another, but it never modifies what it previously was.  But one troubling fact is that we can conflate the identity of our checking account to suddenly be someone else's.
+Your state of being a child allowed you to possess certain characteristics at that point in time.  When you transitioned into adulthood, you took on different characteristics at that point in time.
 
-~~~ruby
-    checking_account.holder('Arya')
-~~~
+However, you also have some continuous identity that you used to represent all of those states over the course of your lifetime.  That's the value that represents YOU and all of those changes throughout your life.
 
-### State and Identity the Clojure Way
 
-An alternative solution to this is to ensure that we can never allow our checking account to fall into an inconsistent state in between threads. Clojure allows you to separate the identity of what we know as our checking account to be separate from the identity that represents it.  Atoms are identities that implement synchronous, uncoordinated, atomic compare-and-set modification.
+> **Value:** Some identity that represents your data throughout time.
 
-Let's elaborate a bit more on what `compare-and-set modification` means.  When we're modifying our checking account balance by withdrawing $1, our atom should look to ensure our current balance is an appropriate amount to withdraw from. Next we withdraw the amount and get ready to move all of our unchanged information associated with our checking account identity to a new state that represents our atom, including our new changes.  Next we compare our inclination of what our atom thought was the "old state" just before we update. If that has changed in another thread we throw out all of our work and start over again with the correct state.
+> **State:** Characteristics that your data can possess at some point in time. (Values which change over time)
+
+If we wanted to represent this concept of separate values and identities in Clojure, Clojure's goal is to have some identity that represents you; not you at any particular point in time, but you as a logical entity throughout time.  In Clojure we can easily ensure that a person is never caught in between two states of identity with an atomic reference type.  
+
+We want to be able to say that an identity of a person can have a particular state at any point in time (child, teenager, adult, etc), but that each state transition does not change history.  For example, if you were to get glasses as an adult, that should not affect anything in your history of being a child.
 
 ### Using an Atom
+
+
+Atoms are the most basic reference type; they are identities that implement synchronous, uncoordinated, atomic compare-and-set modification.  An Atom is an immutable piece of data represented by some state, and as soon as we change our atom we switch out its state for a new state representing its updates.
+
+Let's elaborate a bit more on what `compare-and-set modification` means using the example of our checking account.  When we're modifying our checking account balance by withdrawing $1, our atom should look to ensure our current balance is an appropriate amount to withdraw from. Next we withdraw the amount and get ready to move all of our unchanged information associated with our checking account identity to a new state that represents our atom, including our new changes.  Next we compare our inclination of what our atom thought was the "old state" just before we update. If that has changed in another thread we throw out all of our work and start over again with the correct state.  If you fire up multiple threads to change the same atom, this could possibly cause MULTIPLE collisions.
 
 If we wanted to represent what we know about Sansa Stark as an atom:
 

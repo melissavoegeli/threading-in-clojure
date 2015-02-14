@@ -31,11 +31,11 @@ These are the features we will be focussing on for our bank account.  We're goin
 
 Above we have created an account class that keeps track of our checking account balance.  You can query the balance as well as make deposits and withdrawals. Keep in mind this is a very Java approach to this problem.
 
+Lets give this code a try. Change to our project's `lib` directory and open up `getting-started.clj`.  After that make the necessary changes that the comments recommend.
+
 To give this code a try, start your Clojure repl and load up our `getting-started.clj` file that resides in the `lib` directory.
 
 `$ lein repl`
-
-`$ lein   `
 
 `user=> (load-file "lib/getting-started.clj")`
 

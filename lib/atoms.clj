@@ -1,28 +1,22 @@
-; Create the initial atom with some starting balance
-____
+; create an agent to represent your checking account
+(def my-account (atom {:checking 0}))
 
-; Create a function that takes an account and prints out Balance: $100 (or whatever the current balance is)
-(defn balance [account] ____)
+; create a balance function when given the account, checks the current balance
+(defn balance [acc] (:checking acc))
 
-(defn check-and-withdraw [account val]
+(defn withdraw [account val]
     (let [known-balance (balance account)]
       (Thread/sleep 1000)
       (let [new-account
-              ; ensure our balance is a sufficient amount
-                  ; if true, subtract the amount
-                  ; if false, print "Insufficient funds!"
-               ; return out account in both cases, whether it newly modified one or the same account
-           ]
+            (if (<= val known-balance)
+            (do (println "Insufficient funds!")
+                account)
+            (do (println "Insufficient funds!")
+                account))]
            (println (str "Known " known-balance ", Current Balance: $" (:checking new-account)))
            new-account)))
-
-; Create a function withdraw that will swap a provided atom atom, use the function check-and-withdraw to help
-(defn withdraw [account val] ____)
-
 (doseq [i (range 10)]
- (do
-    ____ ; Implement to show sycnhronous say of attempting to withdraw money from account (Hint: a print statement at the end can help)
-    ____ ; VERSION 2 Afterwards implement to print how an atom's compare-and-set mechanism can cause collisions
-))
-
-; Print the remaining balance at the end
+ (future (withdraw my-account 1)))
+; create a loop to send work to the agent that with withdraw a known amount
+; VERSION 1: Implement to show sycnhronousness by including a print statement at the end
+; VERSION 2: Afterwards implement to print how an atom's compare-and-set mechanism can cause many collisions
