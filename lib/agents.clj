@@ -1,21 +1,24 @@
-; create an agent to represent your checking account
-____
+; 1. Create an atom the represents the checking balance as a map
 
-; create a balance function to check the current balance
-____
+; 2. Show that you know how to access the atom's value by dereferncing it
 
+; 3. Create a balance function that takes an account as an argument
+;    Print out the balance in a format similar to: Balance $5
+
+(defn balance [account] (str "Balance: $" (:checking @my-account)))
 (defn withdraw [account val]
     (let [known-balance (balance account)]
       (Thread/sleep 1000)
       (let [new-account
-            ; rewrite withdraw to work the same was as check-and-withdraw from our previous exercise
+              ; 4. Create a conditional
+              ;     A. When the balance is greater than the value being withdrawn, subtract the amount
+              ;     B. When the balance is less than the value being withdraw print "Insufficient funds"
+              ;   For each case be sure to return an account
            ]
            (println (str "Known " known-balance ", Current Balance: $" (:checking new-account)))
            new-account)))
+; 5. Create a loop that will attempt to withdraw $1 from the account 10 times using `send`
+;    A. Show that the loop asynchronously attempts to change the state of the atom
 
-; create a loop to send work to the agent that with withdraw a known amount
-; be sure to include a print statement much like the previous example to demonstrate its asynchronouse property
-____
-
-; check the balance at the end
-____
+; 6. Load this code in your REPL in order to run it.
+;    When it has finished running check the balance

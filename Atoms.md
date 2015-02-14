@@ -46,6 +46,8 @@ And changing her martial status:
    (swap! checking-account (comp #(assoc % :holder "your-name")))
 ~~~
 
+> TIP: Something like `(assoc account :checking (- (:checking account) val))` will allow you to change the value of your account while still returning the account
+
 ***
 
 #### Programming Exercise
