@@ -1,6 +1,6 @@
-(def my-account (atom {:checking 5}))
+(def my-account-atom (atom {:checking 5}))
 
-(defn balance [account] (str "Balance: $" (:checking @my-account)))
+(defn balance [account] (:checking account))
 (defn withdraw [account val]
     (let [known-balance (balance account)]
       (Thread/sleep 1000)
@@ -13,7 +13,8 @@
            new-account)))
 (doseq [i (range 10)]
  (do
-    (future (swap! my-account withdraw 1)) ; this shows up the synchronousness of compare-and-set
+    (swap! my-account-atom withdraw 1) ; this shows up the synchronousness of compare-and-set
     (println "Tried to withdraw $1")))
 
-(balance my-account)
+
+(balance @my-account-atom)
