@@ -4,7 +4,7 @@
   (deposit [this val]))
 (deftype Account [^:volatile-mutable checking]
   IAccount
-  (balance [this] (println (str "Balance: $" (. this checking))))
+  (balance [this] (. this checking))
   (withdraw [this val] ( if (<= val checking)
                             (set! checking (- checking val))
                             (println "Insufficient funds!\n")))
@@ -14,4 +14,6 @@
 
 ; create 10 futures to perform withdrawals
 
-; print the balance when you're done
+; Load this file in your repl multiple times to see if your results are consistent
+
+; Print the balance at the end of your 10 threads executing

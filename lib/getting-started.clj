@@ -4,7 +4,7 @@
   (deposit [this val]))
 (deftype Account [^:volatile-mutable checking]
   IAccount
-  (balance [this] (println (str "Balance: $" (. this checking))))
+  (balance [this] (. this checking))
   (withdraw [this val] ( if (<= val checking)
                             (set! checking (- checking val))
                             (println "Insufficient funds!\n")))
@@ -14,13 +14,13 @@
 (def your-name (Account. 5))
 
 ; Be sure to update your account name everywhere it is used
-(balance your-name) ; Balance: $5
+(println (str "Balance: $" (balance your-name))) ; Balance: $5
 
 (withdraw your-name 1)
-(balance your-name) ; Balance: $4
+(println (str "Balance: $" (balance your-name))) ; Balance: $4
 
 (deposit your-name 100)
-(balance your-name) ; Balance: $104
+(println (str "Balance: $" (balance your-name))) ; Balance: $104
 
 ; Load this file in your repl
 
