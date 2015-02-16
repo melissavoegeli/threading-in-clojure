@@ -18,35 +18,39 @@ Your state of being a child allowed you to possess certain characteristics at th
 
 However, you also have some continuous identity that you used to represent all of those states over the course of your lifetime.  That's the value that represents YOU and all of those changes throughout your life.
 
-
 > **Value:** Some identity that represents your data throughout time.
 
 > **State:** Characteristics that your data can possess at some point in time. (Values which change over time)
 
-If we wanted to represent this concept of separate values and identities in Clojure, Clojure's goal is to have some identity that represents you; not you at any particular point in time, but you as a logical entity throughout time.  In Clojure we can easily ensure that a person is never caught in between two states of identity with an atomic reference type.  
-
-We want to be able to say that an identity of a person can have a particular state at any point in time (child, teenager, adult, etc), but that each state transition does not change history.  For example, if you were to get glasses as an adult, that should not affect anything in your history of being a child.
+If we wanted to represent this concept of separate values and identities in Clojure, Clojure's goal is to have some identity that represents you; not you at any particular point in time, but you as a logical entity throughout time.  In Clojure we can easily ensure that a person is never caught in between two states of identity with an atomic reference type.
 
 ### Using an Atom
 
+Atoms are the most basic reference type; they are identities that implement synchronous, uncoordinated, atomic compare-and-set modification.  An Atom is an immutable piece of data represented by some state, and as soon as we change our atom we switch out its old state for a new state representing its updates.
 
-Atoms are the most basic reference type; they are identities that implement synchronous, uncoordinated, atomic compare-and-set modification.  An Atom is an immutable piece of data represented by some state, and as soon as we change our atom we switch out its state for a new state representing its updates.
+Creating an atom that contains a reference to a map:
 
-Let's elaborate a bit more on what `compare-and-set modification` means using the example of our checking account.  When we're modifying our checking account balance by withdrawing $1, our atom should look to ensure our current balance is an appropriate amount to withdraw from. Next we withdraw the amount and get ready to move all of our unchanged information associated with our checking account identity to a new state that represents our atom, including our new changes.  Next we compare our inclination of what our atom thought was the "old state" just before we update. If that has changed in another thread we throw out all of our work and start over again with the correct state.  If you fire up multiple threads to change the same atom, this could possibly cause MULTIPLE collisions.
-
-If we wanted to represent what we know about Sansa Stark as an atom:
-
-~~~clojure
-   (def checking-account (atom {:balance 100 :holder "my-name"}))
-~~~
-
-And changing her martial status:
+![Alt text](/img/atom-value-state.jpg)
 
 ~~~clojure
-   (swap! checking-account (comp #(assoc % :holder "your-name")))
+   (def checking-account (atom {:checking 100 :name "My-Account"}))
 ~~~
 
-> TIP: Something like `(assoc account :checking (- (:checking account) val))` will allow you to change the value of your account while still returning the account
+Accessing the value of our atom, we need to dereference it:
+
+~~~clojure
+   @checking-account # => {:checking 100, :name "My-Account"}
+~~~
+
+If we want to "change" the hash that our atom references, we use the function `swap!`.  `swap!` will only work on an atom.  The first argument is the atom and the second argument takes a function that is to be applied to the value the atom references.
+
+![Alt text](/img/atom-value-state-2.jpg)
+
+~~~clojure
+   (swap! checking-account assoc :name "NEW NAME")
+~~~
+
+`swap!` uses the `compare-and-set` property we mentioned earlier.  Let's elaborate a bit more on what `compare-and-set modification` means using the example of our checking account.  When we're modifying our checking account balance by withdrawing $1, our atom should look to ensure our current balance is an appropriate amount to withdraw from. Next we withdraw the amount and leave all of our unchanged information associated with our checking account.  This gets associated with our new state that represents our atom's value, including our new changes.  Next we compare our known original known state to the actual current state just before we update. If that has changed in another thread we throw out all of our work and start over again with the correct state.  If you fire up multiple threads to change the same atom, this could possibly cause MULTIPLE collisions leaving swap to attempt multiple tries before finally updating the change.
 
 ***
 
