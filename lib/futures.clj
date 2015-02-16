@@ -11,9 +11,19 @@
   (deposit [this val] (set! checking (+ checking val))))
 (def your-name (Account. 5))
 
+; 1) Fix this function so it can withdraw some amount repeatedly from your account
+(defn create-future [account amount-to-withdraw] ______________________________________________)
 
-; create 10 futures to perform withdrawals
+(defn loop-over
+      "Given an account, withdraw money however many times is specified"
+      [account num-of-times amount-to-withdraw]
+        (doseq [i (range num-of-times)]
+          (create-future account amount-to-withdraw)))
 
-; Load this file in your repl multiple times to see if your results are consistent
+; 2) Create 10 threads to withdraw money by calling the function loop-over
 
-; Print the balance at the end of your 10 threads executing
+; 3) Print out the balance
+
+; 4) Load this file multiple times in your repl to determine results
+
+(balance your-name)
