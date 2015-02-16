@@ -1,24 +1,52 @@
-; 1. Create an atom the represents the checking balance as a map
+(defn alert-invalid-withdrawl
+      "Alert the user that the withdrawl cannot take place"
+      [] (println "Insufficient funds!"))
 
-; 2. Show that you know how to access the atom's value by dereferncing it
+(defn withdraw?
+      "Check if balance is valid and withdraw the amount"
+      [account-hash amount-to-withdraw] (if (<= amount-to-withdraw (balance account-hash) )
+                                          (!IMPLEMENT-WITHDRAWL! account-hash amount-to-withdraw)
+                                          (do
+                                            (alert-invalid-withdrawl)
+                                            account-hash)))
 
-; 3. Create a balance function that takes an account as an argument
-;    Print out the balance in a format similar to: Balance $5
+(defn print-balances
+      "Print the value known before the swap! happens if it is different from the known global balance"
+      [known-balance account-changes]
+          (if-not (= known-balance (balance @my-account-atom))
+          (println (str "Known Balance Beginning of Swap: $" known-balance ", Actual Global Balance: $" (balance @my-account-atom)))))
 
-(defn balance [account] (str "Balance: $" (:checking @my-account)))
-(defn withdraw [account val]
-    (let [known-balance (balance account)]
-      (Thread/sleep 1000)
-      (let [new-account
-              ; 4. Create a conditional
-              ;     A. When the balance is greater than the value being withdrawn, subtract the amount
-              ;     B. When the balance is less than the value being withdraw print "Insufficient funds"
-              ;   For each case be sure to return an account
-           ]
-           (println (str "Known " known-balance ", Current Balance: $" (:checking new-account)))
-           new-account)))
-; 5. Create a loop that will attempt to withdraw $1 from the account 10 times using `send`
-;    A. Show that the loop asynchronously attempts to change the state of the atom
+(defn sleep-withdraw-print
+      "Sleep 1 second then make a withdrawl and print out the balance known before and after"
+      [account-hash amount-to-withdraw]
+        (let [known-balance (balance account-hash)]
+          (Thread/sleep 1000)
+          (let [account-changes (withdraw? account-hash amount-to-withdraw)]
+               (print-balances known-balance account-changes)
+               account-changes)))
 
-; 6. Load this code in your REPL in order to run it.
-;    When it has finished running check the balance
+(defn balance "Print out the balance of the account" [account-hash] (:checking account-hash))
+
+(defn loop-over
+     "Given an account, withdraw money however many times is specified"
+     [account num-of-times amount-to-withdraw]
+       (doseq [i (range num-of-times)]
+         (do
+            ;(!IMPLEMENT-SEND!)
+            ;(!IMPLEMENT-SEND-SHOWING-COLLISIONS!)
+            (println "Tried to withdraw $1"))))
+
+; 1) Create the agent that references a map whose checking balance is currently $5
+
+; 2) Subtract the amount from the checking balance.  Implement the missing piece of the function.
+(defn !IMPLEMENT-WITHDRAWL!
+      "Subtract from checking balance"
+      [account-hash amount-to-withdraw] ___________________________________________________________________________)
+
+; 3) Demonstrate the synchronousness of withdrawing using atoms
+(defn !IMPLEMENT-SEND! "Calls sleep-withdraw-print on an account atom using swap" [] ______________________________________________)
+
+; 4) Demonstrate the collisions that can occur from an atom's "compare-and-set" mechanism using multiple simulataneous withdrawls
+(defn !IMPLEMENT-SEND-SHOWING-COLLISIONS! "Does the same thing as !IMPLEMENT-WITHDRAWL! except in multiple threads" [] _______________________________________________________)
+
+; 5) Print the known balance before, then use loop-over to withdraw money multiple times
